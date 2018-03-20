@@ -25,6 +25,7 @@ parser.add_argument('--sess', default='mixup_default', type=str, help='session i
 parser.add_argument('--seed', default=0, type=int, help='rng seed')
 parser.add_argument('--alpha', default=1., type=float, help='interpolation strength (uniform=1., ERM=0.)')
 parser.add_argument('--decay', default=1e-4, type=float, help='weight decay (default=1e-4)')
+parser.add_argument('--epochs', '-e', default=200, type=int, help='epochs')
 args = parser.parse_args()
 
 torch.manual_seed(args.seed)
@@ -71,7 +72,7 @@ if args.resume:
     net = checkpoint['net']
     best_acc = checkpoint['acc']
     start_epoch = checkpoint['epoch'] + 1
-    torch.set_rng_state(checkpoint['rng_state'])
+    torch.set_rng_state(checkpoint['rng_state'])`
 else:
     print('==> Building model..')
     # net = VGG('VGG19')
@@ -190,7 +191,7 @@ if not os.path.exists(logname):
         logwriter = csv.writer(logfile, delimiter=',')
         logwriter.writerow(['epoch', 'train loss', 'train acc', 'test loss', 'test acc'])
 
-for epoch in range(start_epoch, 200):
+for epoch in range(start_epoch, args.epochs):
     adjust_learning_rate(optimizer, epoch)
     train_loss, train_acc = train(epoch)
     test_loss, test_acc = test(epoch)
