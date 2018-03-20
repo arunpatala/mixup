@@ -26,6 +26,8 @@ parser.add_argument('--seed', default=0, type=int, help='rng seed')
 parser.add_argument('--alpha', default=1., type=float, help='interpolation strength (uniform=1., ERM=0.)')
 parser.add_argument('--decay', default=1e-4, type=float, help='weight decay (default=1e-4)')
 parser.add_argument('--epochs', '-e', default=200, type=int, help='epochs')
+parser.add_argument('--load', '-l', default=None, type=str, help='load session checkpoint')
+parser.add_argument('--start', '-s', default=0, type=int, help='starting session')
 args = parser.parse_args()
 
 torch.manual_seed(args.seed)
@@ -68,10 +70,17 @@ if args.resume:
     # Load checkpoint.
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-    checkpoint = torch.load('./checkpoint/ckpt.t7.' + args.sess + '_' + str(args.seed))
-    net = checkpoint['net']
-    best_acc = checkpoint['acc']
-    start_epoch = checkpoint['epoch'] + 1
+    if args.load is None:
+        checkpoint = torch.load('./checkpoint/ckpt.t7.' + args.sess + '_' + str(args.seed))
+        net = checkpoint['net']
+        best_acc = checkpoint['acc']
+        start_epoch = checkpoint['epoch'] + 1
+    else:
+        checkpoint = torch.load('./checkpoint/ckpt.t7.' + args.load + '_' + str(args.seed))
+        net = checkpoint['net']
+        best_acc = 0.0
+        start_epoch = args.start
+
     torch.set_rng_state(checkpoint['rng_state'])
 else:
     print('==> Building model..')
@@ -173,15 +182,15 @@ def checkpoint(acc, epoch):
         os.mkdir('checkpoint')
     torch.save(state, './checkpoint/ckpt.t7.' + args.sess + '_' + str(args.seed))
 
-def adjust_learning_rate(optimizer, epoch):
+def adjust_learning_rate(optimizer, epoch, epochs):
     """decrease the learning rate at 100 and 150 epoch"""
     lr = base_learning_rate
     if epoch <= 9 and lr > 0.1:
         # warm-up training for large minibatch
         lr = 0.1 + (base_learning_rate - 0.1) * epoch / 10.
-    if epoch >= 100:
+    if epoch >= (epochs//2):
         lr /= 10
-    if epoch >= 150:
+    if epoch >= (3*epochs//4):
         lr /= 10
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
@@ -192,7 +201,7 @@ if not os.path.exists(logname):
         logwriter.writerow(['epoch', 'train loss', 'train acc', 'test loss', 'test acc'])
 
 for epoch in range(start_epoch, args.epochs):
-    adjust_learning_rate(optimizer, epoch)
+    adjust_learning_rate(optimizer, epoch, args.epochs)
     train_loss, train_acc = train(epoch)
     test_loss, test_acc = test(epoch)
     with open(logname, 'a') as logfile:
