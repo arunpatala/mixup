@@ -72,7 +72,7 @@ if args.resume:
     net = checkpoint['net']
     best_acc = checkpoint['acc']
     start_epoch = checkpoint['epoch'] + 1
-    torch.set_rng_state(checkpoint['rng_state'])`
+    torch.set_rng_state(checkpoint['rng_state'])
 else:
     print('==> Building model..')
     # net = VGG('VGG19')
