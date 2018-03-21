@@ -9,9 +9,9 @@
 
 ### latent space interpolation between digits from left most column and right most column
 
-DIM 2             |  DIM256 |  DIM256 
+MIXUP             |  DIM2 |  DIM256 
 :-------------------------:|:-------------------------:|:-------------------------:
-![](interpolation_dim2.png)  |  ![](interpolation_dim256.png) |  ![](interpolation_dim256.png) 
+<img src="mixup_interpolation.png" alt="alt text" width="33%" height="33%">  |  ![](interpolation_dim2.png) |  ![](interpolation_dim256.png) 
 
 
 
