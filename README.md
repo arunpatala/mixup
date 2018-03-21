@@ -3,8 +3,8 @@
 
 ### mixup interpolation between digits from left most column and right most column
 
-![](mixup_interpolation.png)
 
+<img src="mixup_interpolation.png" alt="alt text" width="33%" height="33%">
 
 
 ### latent space interpolation between digits from left most column and right most column
