@@ -1,7 +1,15 @@
 
 ## Interpolation in image space vs latent space
 
+### mixup interpolation between digits from left most column and right most column
+
 ![](mixup_interpolation.png)
+
+
+
+### latent space interpolation between digits from left most column and right most column
+
+![](interpolation_dim2.png)
 
 
 
