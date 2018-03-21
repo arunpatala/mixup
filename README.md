@@ -11,6 +11,8 @@
 
 ![](interpolation_dim2.png)
 
+![](interpolation_dim256.png)
+
 
 
 
