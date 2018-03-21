@@ -18,6 +18,6 @@ The following table shows the median test errors of the last 10 epochs in a 200-
 |:-------------------|---------------------:|---------------------:|
 | ERM                |               5.53%  |               5.18%  |
 | _mixup_            |               4.24%  |               4.68%  |
-| _mixup_latent_     |               3.47%  |               _.__%  |
+| _mixup_latent_     |               3.55%  |                |
 
 
