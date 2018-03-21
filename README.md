@@ -1,3 +1,15 @@
+
+## Interpolation in image space vs latent space
+
+![](mixup_interpolation.png)
+
+
+
+
+
+
+
+
 This repo contains demo reimplementations of the CIFAR-10 training code and the GAN experiment in PyTorch based on the following paper:
 > Hongyi Zhang, Moustapha Cisse, Yann N. Dauphin and David Lopez-Paz. _mixup: Beyond Empirical Risk Minimization._ https://arxiv.org/abs/1710.09412
 
