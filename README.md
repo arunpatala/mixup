@@ -11,7 +11,7 @@
 
 MIXUP             |  DIM2 |  DIM256 
 :-------------------------:|:-------------------------:|:-------------------------:
-<img src="mixup_interpolation.png" alt="alt text" width="33%" height="33%">  |  ![](interpolation_dim2.png) |  ![](interpolation_dim256.png) 
+![](mixup_interpolation.png)  |  ![](interpolation_dim2.png) |  ![](interpolation_dim256.png) 
 
 
 
