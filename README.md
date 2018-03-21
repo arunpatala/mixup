@@ -1,24 +1,14 @@
 
 ## Interpolation in image space vs latent space
 
-### mixup interpolation between digits from left most column and right most column
 
-
-<img src="mixup_interpolation.png" alt="alt text" width="33%" height="33%"> ![](interpolation_dim2.png) ![](interpolation_dim256.png) 
-
-
-### latent space interpolation between digits from left most column and right most column
+### interpolation in mixup vs latent space
 
 MIXUP             |  DIM2 |  DIM256 
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](mixup_interpolation2.png)  |  ![](interpolation_dim2.png) |  ![](interpolation_dim256.png) 
 
 
-
-
-
-This repo contains demo reimplementations of the CIFAR-10 training code and the GAN experiment in PyTorch based on the following paper:
-> Hongyi Zhang, Moustapha Cisse, Yann N. Dauphin and David Lopez-Paz. _mixup: Beyond Empirical Risk Minimization._ https://arxiv.org/abs/1710.09412
 
 ## CIFAR-10
 
@@ -28,13 +18,6 @@ The following table shows the median test errors of the last 10 epochs in a 200-
 |:-------------------|---------------------:|---------------------:|
 | ERM                |               5.53%  |               5.18%  |
 | _mixup_            |               4.24%  |               4.68%  |
+| _mixup_latent_     |               3.47%  |               _.__%  |
 
-## Generative Adversarial Networks (GAN)
 
-![](gan/images/gan_results.png)
-
-## Other frameworks
- - [A Tensorflow implementation of mixup](https://github.com/ppwwyyxx/tensorpack/tree/master/examples/ResNet#cifar10-preact18-mixuppy) which reproduces our results in [tensorpack](https://github.com/ppwwyyxx/tensorpack)
-
-## Acknowledgement
-The CIFAR-10 reimplementation of _mixup_ is adapted from the [pytorch-cifar](https://github.com/kuangliu/pytorch-cifar) repository by [kuangliu](https://github.com/kuangliu).
